@@ -16,15 +16,15 @@ concurrency:
 
 jobs:
   cygwin:
-    name: check cygwin
+    name: test cygwin
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v7
     - name: setup toolchain
       shell: 'C:\msys64\usr\bin\bash.exe --login -eo pipefail {0}'
       run: pacman -Sy --noconfirm --needed rust
-    - name: check
+    - name: test
       shell: 'C:\msys64\usr\bin\bash.exe --login -eo pipefail {0}'
       env:
         CHERE_INVOKING: 1
-      run: cargo check --target x86_64-pc-cygwin
+      run: cargo test --target x86_64-pc-cygwin
